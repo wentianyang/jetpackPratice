@@ -1,0 +1,12 @@
+*.iml
+.gradle
+build
+local.properties
+.idea
+*.project
+*.buildship.core.prefs
+.DS_Store
+/captures
+ktlint
+.externalNativeBuild
+.cxx
