@@ -1,6 +1,6 @@
-package com.core.util
+package com.ytw.core.util
 
-import com.core.data.Result
+import com.ytw.core.data.Result
 import java.io.IOException
 
 /**

@@ -1,4 +1,4 @@
-package com.core.data
+package com.ytw.core.data
 
 /**
  * author: ytw
