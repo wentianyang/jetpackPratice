@@ -11,6 +11,7 @@ import javax.inject.Singleton
  * @Date: 2019/10/18 0:14
  * @Description:
  **/
+@Component(modules = [CoreModule::class])
 @Singleton
 interface CoreComponent {
 

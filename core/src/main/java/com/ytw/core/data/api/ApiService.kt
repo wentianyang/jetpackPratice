@@ -1,6 +1,7 @@
 package com.ytw.core.data.api
 
 import com.ytw.core.data.Result
+import retrofit2.Response
 import retrofit2.http.GET
 
 /**
@@ -11,5 +12,5 @@ import retrofit2.http.GET
 interface ApiService {
 
   @GET("")
-  suspend fun getData() :Result<String>
+  suspend fun getData() : Response<String>
 }
