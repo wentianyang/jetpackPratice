@@ -1,10 +1,9 @@
 package com.ytw.core.dagger
 
+import com.ytw.core.data.api.AppViewService
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * @Author: Ytw
@@ -15,11 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class BaseModule {
 
   @Provides
-  fun createRetrofit(okHttpClient: Lazy<OkHttpClient>, gsonConverterFactory: GsonConverterFactory): Retrofit {
-    return Retrofit.Builder()
-      .baseUrl("")
-      .client(okHttpClient.value)
-      .addConverterFactory(gsonConverterFactory)
-      .build()
+  fun provideAppViewService(retrofit: Retrofit): AppViewService {
+    return retrofit.create(AppViewService::class.java)
   }
 }

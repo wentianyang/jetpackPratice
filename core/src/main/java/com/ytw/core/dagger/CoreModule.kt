@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -15,6 +16,20 @@ import retrofit2.converter.gson.GsonConverterFactory
  **/
 @Module
 class CoreModule {
+
+  @Provides
+  fun provideRetrofit(okHttpClient: Lazy<OkHttpClient>, gsonConverterFactory: GsonConverterFactory): Retrofit {
+    val endPoint = if (BuildConfig.DEBUG) {
+      BuildConfig.DEV_ENDPOINT
+    } else {
+      BuildConfig.ENDPOINT
+    }
+    return Retrofit.Builder()
+      .baseUrl(endPoint)
+      .client(okHttpClient.value)
+      .addConverterFactory(gsonConverterFactory)
+      .build()
+  }
 
   @Provides
   fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
