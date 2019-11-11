@@ -1,4 +1,4 @@
-package com.ytw.core.data.api
+package com.ytw.core.data.api.appconfig
 
 import com.ytw.core.data.Result
 import kotlinx.coroutines.Dispatchers
@@ -7,9 +7,9 @@ import kotlinx.coroutines.withContext
 /**
  * @Author: Ytw
  * @Date: 2019/10/18 0:03
- * @Description:
+ * @Description: 存储和获取AppConfig的类
  **/
-class DataRepository(private val remoteDataSource: RemoteDataSource) {
+class AppConfigRepository(private val remoteDataSource: AppConfigRemoteDataSource) {
 
   suspend fun loadData(): Result<String> {
     return withContext(Dispatchers.IO) {
@@ -19,11 +19,11 @@ class DataRepository(private val remoteDataSource: RemoteDataSource) {
 
   companion object {
     @Volatile
-    private var INSTANCE: DataRepository? = null
+    private var INSTANCE: AppConfigRepository? = null
 
-    fun getInstance(remoteDataSource: RemoteDataSource): DataRepository {
+    fun getInstance(remoteDataSource: AppConfigRemoteDataSource): AppConfigRepository {
       return INSTANCE ?: synchronized(this) {
-        INSTANCE ?: DataRepository(remoteDataSource).also { INSTANCE = it }
+        INSTANCE ?: AppConfigRepository(remoteDataSource).also { INSTANCE = it }
       }
     }
   }

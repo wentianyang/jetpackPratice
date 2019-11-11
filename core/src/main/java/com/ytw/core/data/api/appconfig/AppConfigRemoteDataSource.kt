@@ -1,6 +1,7 @@
-package com.ytw.core.data.api
+package com.ytw.core.data.api.appconfig
 
 import com.ytw.core.data.Result
+import com.ytw.core.data.api.appconfig.AppConfigApiService
 import com.ytw.core.util.safeApiCall
 import java.io.IOException
 import javax.inject.Inject
@@ -8,9 +9,9 @@ import javax.inject.Inject
 /**
  * @Author: Ytw
  * @Date: 2019/10/18 0:04
- * @Description:
+ * @Description: 通过AppConfigService获取AppConfig的数据源的类
  **/
-class RemoteDataSource @Inject constructor(private val service: ApiService) {
+class AppConfigRemoteDataSource @Inject constructor(private val service: AppConfigApiService) {
 
   suspend fun loadData() = safeApiCall(
     call = { requestData() },

@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class CoreModule {
 
   @Provides
-  fun provideRetrofit(okHttpClient: Lazy<OkHttpClient>, gsonConverterFactory: GsonConverterFactory): Retrofit {
+  fun provideRetrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit {
     val endPoint = if (BuildConfig.DEBUG) {
       BuildConfig.DEV_ENDPOINT
     } else {
@@ -26,7 +26,7 @@ class CoreModule {
     }
     return Retrofit.Builder()
       .baseUrl(endPoint)
-      .client(okHttpClient.value)
+      .client(okHttpClient)
       .addConverterFactory(gsonConverterFactory)
       .build()
   }

@@ -22,7 +22,7 @@ android {
     consumerProguardFiles 'consumer-rules.pro'
 
     buildConfigField 'String', 'ENDPOINT', "\"your end point\""
-    buildConfigField 'String', 'DEV_ENDPOINT', "\"your dev end point\""
+    buildConfigField 'String', 'DEV_ENDPOINT', ""
   }
 
   buildTypes {
@@ -39,7 +39,7 @@ dependencies {
   implementation "com.github.bumptech.glide:glide:${versions.glide}"
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
-  implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+  api "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
   kapt "com.github.bumptech.glide:compiler:${versions.glide}"
   kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 }

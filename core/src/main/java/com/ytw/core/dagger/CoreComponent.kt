@@ -3,6 +3,7 @@ package com.ytw.core.dagger
 import com.google.gson.Gson
 import dagger.Component
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -19,6 +20,8 @@ interface CoreComponent {
   interface Builder {
     fun build(): CoreComponent
   }
+
+  fun provideRetrofit(): Retrofit
 
   fun providerOkHttpClient(): OkHttpClient
 

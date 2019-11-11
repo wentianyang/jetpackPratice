@@ -7,20 +7,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.ytw.jetpackpratice.JetpackApplication
 import com.ytw.jetpackpratice.R
+import com.ytw.jetpackpratice.dagger.inject
 import com.ytw.jetpackpratice.ui.model.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
   val TAG = "MainActivity"
 
-  private lateinit var mainViewModel: MainViewModel
+  @Inject
+  lateinit var mainViewModel: MainViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+    inject(this)
 
     mainViewModel.text.observe(this, Observer {
       test.text = it
@@ -29,9 +32,6 @@ class MainActivity : AppCompatActivity() {
     test.setOnClickListener {
       mainViewModel.onClickText("hello livedata ")
     }
-
-    Log.d(TAG, "gson is ${JetpackApplication.coreComponent(this).providerGson()}")
-
-    Log.d(TAG, "okhttp client is ${JetpackApplication.coreComponent(this).providerOkHttpClient()}")
+    mainViewModel.getAppConfig()
   }
 }
